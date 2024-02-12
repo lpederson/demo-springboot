@@ -1,0 +1,31 @@
+services:
+  app:
+    build:
+      context: .
+    #    network_mode: host
+    environment:
+      - spring.datasource.url=jdbc:postgresql://postgres:5432/
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    #    network_mode: host
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
+    driver: local
+#
+#networks:
+#  net:
+#    driver: bridge
