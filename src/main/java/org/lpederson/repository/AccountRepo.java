@@ -1,6 +1,6 @@
-package com.lpederson.repository;
+package org.lpederson.repository;
 
-import com.lpederson.entity.Account;
+import org.lpederson.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

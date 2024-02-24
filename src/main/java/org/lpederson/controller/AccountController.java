@@ -1,9 +1,12 @@
-package com.lpederson.controller;
+package org.lpederson.controller;
 
-import com.lpederson.entity.Account;
-import com.lpederson.service.AccountService;
+import lombok.extern.slf4j.Slf4j;
+import org.lpederson.entity.Account;
+import org.lpederson.service.AccountService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.lpederson.kafka.KafkaConfig.TOPIC;
+
 import java.util.List;
 
 
@@ -21,11 +26,21 @@ import java.util.List;
 @RequestMapping("/accounts/v1")
 @RequiredArgsConstructor
 @Validated
+@Slf4j
 public class AccountController {
     private final AccountService accountService;
 
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+    public void sendMessage(String msg) {
+        log.info("sending a message");
+        kafkaTemplate.send(TOPIC, msg);
+    }
+
     @GetMapping("/")
     public ResponseEntity<List<Account>> getAllAccounts() {
+        sendMessage("fetched all accounts");
         return ResponseEntity.ok().body(accountService.getAllEmployees());
     }
 
@@ -38,11 +53,13 @@ public class AccountController {
 
     @PostMapping("/")
     public ResponseEntity<Account> saveEmployee(@RequestBody Account account) {
+        sendMessage("saved an account");
         return ResponseEntity.ok().body(accountService.saveAccount(account));
     }
 
     @PutMapping("/")
     public ResponseEntity<Account> updateEmployee(@RequestBody Account account) {
+        sendMessage("account was updated." + account);
         return ResponseEntity.ok().body(accountService.updateAccount(account));
     }
 

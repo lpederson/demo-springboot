@@ -1,4 +1,4 @@
-package com.lpederson.entity;
+package org.lpederson.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

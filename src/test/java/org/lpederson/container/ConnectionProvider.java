@@ -1,4 +1,4 @@
-package com.lpederson.container;
+package org.lpederson.container;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

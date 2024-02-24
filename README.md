@@ -3,8 +3,8 @@ This is a "hello world" project to understand Springboot.
 
 It's a basic:
 - Http server
-- on Postgres
-- with Kafka event bus (TBD)
+- with Postgres
+- with Kafka pub/sub
 
 ### Build
 - Gradle 7+

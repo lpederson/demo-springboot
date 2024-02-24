@@ -1,6 +1,6 @@
-package com.lpederson;
+package org.lpederson;
 
-import com.lpederson.container.ContainerizedTest;
+import org.lpederson.container.ContainerizedTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

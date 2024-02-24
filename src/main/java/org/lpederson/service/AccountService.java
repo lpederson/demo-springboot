@@ -1,7 +1,7 @@
-package com.lpederson.service;
+package org.lpederson.service;
 
-import com.lpederson.entity.Account;
-import com.lpederson.repository.AccountRepo;
+import org.lpederson.entity.Account;
+import org.lpederson.repository.AccountRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

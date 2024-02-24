@@ -1,25 +1,21 @@
-package com.lpederson.container;
+package org.lpederson.container;
 
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.PortBinding;
 import com.github.dockerjava.api.model.Ports;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 import java.util.List;
 
-public class ContainerizedTest {
+public class Postgres {
 
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(
-            "postgres:15-alpine"
-
-    );
     ConnectionProvider connectionProvider;
 
-    @BeforeAll
-    static void beforeAll() {
+    private static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(
+            "postgres:15-alpine"
+    );
+
+    public void start() {
         System.out.println("starting postgres");
         postgres.withDatabaseName("demo");
         postgres.withUsername("postgres");
@@ -30,19 +26,15 @@ public class ContainerizedTest {
                     Ports.Binding.bindPort(5432), new ExposedPort(5432)));
         });
         postgres.start();
-    }
 
-    @AfterAll
-    static void afterAll() {
-        postgres.stop();
-    }
-
-    @BeforeEach
-    void setUp() {
         connectionProvider = new ConnectionProvider(
                 postgres.getJdbcUrl(),
                 postgres.getUsername(),
                 postgres.getPassword()
         );
+    }
+
+    public void stop() {
+        postgres.stop();
     }
 }
