@@ -10,9 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Service layer is where all the business logic lies
- */
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
