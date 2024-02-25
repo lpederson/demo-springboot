@@ -5,12 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
-import static org.lpederson.kafka.KafkaConfig.BOOTSTRAP_SERVER_VALUE;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
+
+import static org.lpederson.kafka.KafkaConfig.BOOTSTRAP_SERVER_VALUE;
 
 @EnableKafka
 @Configuration
@@ -30,14 +28,4 @@ class ConsumerConfig {
 
         return new DefaultKafkaConsumerFactory(props);
     }
-
-//    @Bean
-//    public ConcurrentKafkaListenerContainerFactory<String, String>
-//    kafkaListenerContainerFactory() {
-//
-//        ConcurrentKafkaListenerContainerFactory<String, String> factory =
-//                new ConcurrentKafkaListenerContainerFactory<>();
-//        factory.setConsumerFactory(consumerFactory());
-//        return factory;
-//    }
 }

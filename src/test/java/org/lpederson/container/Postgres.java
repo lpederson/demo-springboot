@@ -9,11 +9,10 @@ import java.util.List;
 
 public class Postgres {
 
-    ConnectionProvider connectionProvider;
-
     private static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(
             "postgres:15-alpine"
     );
+    ConnectionProvider connectionProvider;
 
     public void start() {
         System.out.println("starting postgres");

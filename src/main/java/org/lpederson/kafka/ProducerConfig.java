@@ -5,13 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
-import static org.lpederson.kafka.KafkaConfig.BOOTSTRAP_SERVER_VALUE;
 
-
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
+
+import static org.lpederson.kafka.KafkaConfig.BOOTSTRAP_SERVER_VALUE;
 
 @Configuration
 public class ProducerConfig {

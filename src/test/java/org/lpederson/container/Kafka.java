@@ -8,7 +8,7 @@ public class Kafka {
     private final KafkaContainer kafka;
 
     public Kafka() {
-        kafka =  new KafkaContainer(
+        kafka = new KafkaContainer(
                 DockerImageName.parse("confluentinc/cp-kafka:6.2.1"));
     }
 
