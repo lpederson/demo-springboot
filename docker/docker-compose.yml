@@ -1,10 +1,17 @@
 services:
-  app:
-    image: springboot-app
+  api:
+    image: api
     environment:
       - spring.datasource.url=jdbc:postgresql://postgres:5432/
     ports:
       - "8080:8080"
+    depends_on:
+      - postgres
+      - kafka
+  backend:
+    image: backend
+    environment:
+      - spring.datasource.url=jdbc:postgresql://postgres:5432/
     depends_on:
       - postgres
       - kafka

@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: backend
+
+  flyway:
+    locations: classpath:/db/migration
+    baselineOnMigrate: true
+    enabled: true
+
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/
+    username: postgres
+    password: postgres
+
+  kafka:
+    bootstrap-servers: localhost:29092,kafka:9092
+    consumer.group-id: backend
+
+  logging.level:
+    root: warn
+    org.springframework.web: debug
+    org.hibernate: error
+    org.lpederson: debug
