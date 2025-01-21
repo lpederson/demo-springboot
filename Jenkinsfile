@@ -3,14 +3,15 @@ pipeline {
         node { label 'kubeagent' }
         docker { image 'gradle:8-jdk17' }
     }
+    stages {
+        stage('Checkout') {
+            checkout scm
+        }
 
-    stage('Checkout') {
-        checkout scm
-    }
-
-    stage('Test') {
-        steps {
-            sh 'gradle test'
+        stage('Test') {
+            steps {
+                sh 'gradle test'
+            }
         }
     }
 }
