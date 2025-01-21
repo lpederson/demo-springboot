@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'gradle:8-jdk17' }
+        node { label 'kubeagent' }
     }
     stages {
         stage('Test') {
