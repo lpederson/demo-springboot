@@ -1,9 +1,9 @@
 pipeline {
-  agent {
-    kubernetes {
-      label 'kubeagent'
-      defaultContainer 'jnlp'
-      yaml """
+    agent {
+        kubernetes {
+          label 'kubeagent'
+          defaultContainer 'jnlp'
+          yaml """
 apiVersion: v1
 kind: Pod
 metadata:
@@ -32,6 +32,7 @@ spec:
       hostPath:
         path: /var/run/docker.sock
 """
+        }
     }
 
 // pipeline {
