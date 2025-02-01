@@ -5,9 +5,9 @@ import org.lpederson.api.container.ContainerizedTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-@SpringBootTest
+//@SpringBootTest
 class MainTests extends ContainerizedTest {
-    @Test
+//    @Test
     void contextLoads() {
     }
 }

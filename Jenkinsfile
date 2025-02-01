@@ -1,13 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'gradle:7-jdk17' }
+    }
     stages {
         stage('Test') {
             steps {
-                script {
-                    docker.image('gradle:7-jdk17').inside {
-                        sh 'gradle test'
-                    }
-                }
+                sh 'gradle test'
             }
         }
     }
