@@ -1,11 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'gradle' }
+    }
     stages {
         stage('Test') {
             steps {
-                container('gradle') {
-                    sh 'gradle test'
-                }
+                sh 'gradle test'
             }
         }
     }
