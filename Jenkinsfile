@@ -28,8 +28,8 @@ pipeline {
             steps{
                 script{
                     sh "docker build -f Dockerfile_api -t ${API_IMAGE} ."
-                    sh "docker tag ${API_IMAGE}:latest ${REGISTRY}/${API_IMAGE}:latest"
-                    sh "docker push ${REGISTRY}/${API_IMAGE}:latest"
+                    sh "docker tag ${API_IMAGE}:latest ${REGISTRY}/${API_IMAGE}"
+                    sh "docker push ${REGISTRY}/${API_IMAGE}"
                 }
             }
         }
