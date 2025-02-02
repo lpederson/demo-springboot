@@ -5,5 +5,4 @@ CREATE TABLE IF NOT EXISTS account (
     created_at timestamp,
     updated_at timestamp,
     PRIMARY KEY (id)
-)
-;
+);

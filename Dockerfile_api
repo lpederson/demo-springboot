@@ -1,0 +1,9 @@
+FROM gradle:7-jdk17 AS builder
+WORKDIR /app
+COPY . .
+RUN gradle api:bootJar
+
+FROM openjdk:17
+WORKDIR /opt
+COPY --from=builder /app/api/build/libs/api.jar .
+ENTRYPOINT ["java", "-jar", "/opt/api.jar"]

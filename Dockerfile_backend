@@ -1,0 +1,9 @@
+FROM gradle:7-jdk17 AS builder
+WORKDIR /app
+COPY . .
+RUN gradle backend:bootJar
+
+FROM openjdk:17
+WORKDIR /opt
+COPY --from=builder /app/backend/build/libs/backend.jar .
+ENTRYPOINT ["java", "-jar", "/opt/backend.jar"]
