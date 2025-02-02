@@ -28,7 +28,7 @@ pipeline {
             steps{
                 script{
                     sh "docker build -f Dockerfile_api -t ${API_IMAGE} ."
-                    sh "docker tag ${API_IMAGE}:latest ${REGISTRY}/${API_IMAGE}"
+                    sh "docker tag ${API_IMAGE} ${REGISTRY}/${API_IMAGE}"
                     sh "docker push ${REGISTRY}/${API_IMAGE}"
                 }
             }
@@ -37,9 +37,8 @@ pipeline {
         stage ('Cleanup Artifacts') {
             steps {
                 script {
-                    sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-                     sh "docker rmi ${IMAGE_NAME}:latest"
-                 }
+                    sh "docker rmi ${API_IMAGE}"
+                }
              }
         }
     }
