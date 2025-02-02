@@ -1,15 +1,11 @@
 pipeline {
-    agent {
-        docker { image 'gradle:7-jdk17' }
-    }
-    //tools {
-    //    gradle 'Gradle7'
-    //}
+    agent any
+
     environment {
         APP_NAME = "springboot-demo"
         RELEASE_NUMBER = "1.0"
         IMAGE_TAG = "${RELEASE_NUMBER}"
-        REGISTRY = "192.168.0.202"
+        REGISTRY = "docker1.home"
 
         API_IMAGE = "${APP_NAME}-api"
         BACKEND_IMAGE = "${APP_NAME}-backend"
@@ -22,6 +18,9 @@ pipeline {
             }
         }
         stage('Test') {
+            agent {
+                docker { image 'gradle:7-jdk17' }
+            }
             steps {
                 sh 'gradle test'
             }
@@ -30,8 +29,8 @@ pipeline {
             steps{
                 script{
                     sh "docker build -f Dockerfile_api -t ${API_IMAGE} ."
-                    sh "docker tag ${API_IMAGE}:latest ${URL_REGISTRY}/${API_IMAGE}:latest"
-                    sh "docker push ${URL_REGISTRY}/${API_IMAGE}:latest"
+                    sh "docker tag ${API_IMAGE}:latest ${REGISTRY}/${API_IMAGE}:latest"
+                    sh "docker push ${REGISTRY}/${API_IMAGE}:latest"
                 }
             }
         }
