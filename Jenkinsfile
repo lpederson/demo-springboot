@@ -3,20 +3,19 @@ pipeline {
 
     environment {
         APP_NAME = "springboot-demo"
-        RELEASE_NUMBER = "1.0"
-        IMAGE_TAG = "${RELEASE_NUMBER}"
         REGISTRY = "docker1.home"
-
-        API_IMAGE = "${APP_NAME}-api"
-        BACKEND_IMAGE = "${APP_NAME}-backend"
+        VERSION = "v1"
+        TAG = "${VERSION}-${currentBuild.number}"
+        API_IMAGE = "${APP_NAME}-api:${TAG}"
+        BACKEND_IMAGE = "${APP_NAME}-backend:${TAG}"
     }
 
     stages {
-        stage("Cleanup Workspace"){
-            steps {
-                cleanWs()
-            }
-        }
+        //stage("Cleanup Workspace"){
+        //    steps {
+        //        cleanWs()
+        //    }
+        //}
         stage('Test') {
             agent {
                 docker { image 'gradle:7-jdk17' }
